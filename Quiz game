@@ -1,0 +1,60 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+struct Question {
+    string text;
+    string options[4];
+    int correctOption; // 1 to 4
+};
+
+int main() {
+    // 1. Setup Question Bank
+    vector<Question> bank = {
+        {"What is the brain of a computer?", {"Hard Drive", "CPU", "RAM", "Monitor"}, 2},
+        {"Which language is used for web styling?", {"HTML", "Python", "CSS", "Java"}, 3},
+        {"What does RAM stand for?", {"Read Access Memory", "Random Access Memory", "Run All Media", "None"}, 2},
+        {"1 Gigabyte is equal to how many Megabytes?", {"100", "500", "1024", "2048"}, 3}
+        // You can add up to 200 questions here
+    };
+
+    int totalDesired, score = 0;
+
+    // 2. Ask user how many questions they want
+    cout << "Welcome to the Computer Quiz!" << endl;
+    cout << "How many questions do you want to attempt? (Max 200): ";
+    cin >> totalDesired;
+
+    // Limit to bank size or 200
+    if (totalDesired > bank.size()) totalDesired = bank.size();
+    if (totalDesired > 200) totalDesired = 200;
+
+    // 3. Game Loop
+    for (int i = 0; i < totalDesired; i++) {
+        int userChoice;
+        cout << "\nQuestion " << (i + 1) << ": " << bank[i].text << endl;
+        for (int j = 0; j < 4; j++) {
+            cout << (j + 1) << ". " << bank[i].options[j] << endl;
+        }
+
+        cout << "Enter your answer (1-4): ";
+        cin >> userChoice;
+
+        if (userChoice == bank[i].correctOption) {
+            cout << "Correct! (* ^ ω ^)づ~💋" << endl; // Kiss symbol
+            score++;
+        } else {
+            cout << "It's ok, try again next time!" << endl;
+        }
+    }
+
+    // 4. Final Result
+    cout << "\n--- Final Results ---" << endl;
+    cout << "Questions Attempted: " << totalDesired << endl;
+    cout << "Correct Answers: " << score << endl;
+    cout << "Accuracy: " << (float)score / totalDesired * 100 << "%" << endl;
+
+    return 0;
+}
