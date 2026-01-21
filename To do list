@@ -1,0 +1,80 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+// Class to represent an individual task
+class Task {
+public:
+    string description;
+    bool isDone;
+
+    Task(string desc) : description(desc), isDone(false) {}
+};
+
+// Function to display the current list
+void showTasks(const vector<Task>& tasks) {
+    if (tasks.empty()) {
+        cout << "\nYour list is empty!" << endl;
+        return;
+    }
+    cout << "\n--- Your To-Do List ---" << endl;
+    for (size_t i = 0; i < tasks.size(); ++i) {
+        cout << i + 1 << ". [" << (tasks[i].isDone ? "X" : " ") << "] " 
+             << tasks[i].description << endl;
+    }
+}
+
+int main() {
+    vector<Task> todoList;
+    int choice;
+    string input;
+
+    while (true) {
+        cout << "\n1. Add Task\n2. View Tasks\n3. Mark Task Done\n4. Remove Task\n5. Exit\nChoice: ";
+        cin >> choice;
+        cin.ignore(); // Clear newline from buffer
+
+        if (choice == 1) {
+            cout << "Enter task: ";
+            getline(cin, input);
+            todoList.push_back(Task(input));
+            cout << "Task added!" << endl;
+
+        } else if (choice == 2) {
+            showTasks(todoList);
+
+        } else if (choice == 3) {
+            showTasks(todoList);
+            if (!todoList.empty()) {
+                int index;
+                cout << "Enter task number to mark as done: ";
+                cin >> index;
+                if (index > 0 && index <= todoList.size()) {
+                    todoList[index - 1].isDone = true;
+                    cout << "Marked as done!" << endl;
+                }
+            }
+
+        } else if (choice == 4) {
+            showTasks(todoList);
+            if (!todoList.empty()) {
+                int index;
+                cout << "Enter task number to remove: ";
+                cin >> index;
+                if (index > 0 && index <= todoList.size()) {
+                    todoList.erase(todoList.begin() + (index - 1));
+                    cout << "Task removed!" << endl;
+                }
+            }
+
+        } else if (choice == 5) {
+            cout << "Goodbye!" << endl;
+            break;
+        } else {
+            cout << "Invalid choice. Try again." << endl;
+        }
+    }
+    return 0;
+}
