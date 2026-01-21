@@ -1,0 +1,48 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+struct Contact {
+    string name;
+    string phone;
+    string email;
+};
+
+void saveToExcel(const vector<Contact>& contacts) {
+    ofstream file("address_book.csv"); // Creates a CSV file
+    
+    // Excel Header (Column Titles)
+    file << "Name,Phone Number,Email" << endl;
+
+    // Write contact data
+    for (const auto& c : contacts) {
+        file << c.name << "," << c.phone << "," << c.email << endl;
+    }
+
+    file.close();
+    cout << "\nData successfully saved to 'address_book.csv'. Open this file in Excel to see the grid view.\n";
+}
+
+int main() {
+    vector<Contact> contacts;
+    int n;
+
+    cout << "Enter number of contacts to add: ";
+    cin >> n;
+    cin.ignore(); // Clear buffer
+
+    for (int i = 0; i < n; i++) {
+        Contact c;
+        cout << "\nContact " << i + 1 << ":" << endl;
+        cout << "Name: "; getline(cin, c.name);
+        cout << "Phone: "; getline(cin, c.phone);
+        cout << "Email: "; getline(cin, c.email);
+        contacts.push_back(c);
+    }
+
+    saveToExcel(contacts);
+    return 0;
+}
