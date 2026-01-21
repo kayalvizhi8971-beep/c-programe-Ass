@@ -1,0 +1,46 @@
+#include <iostream>
+#include <cmath>
+
+#ifdef _WIN32
+#include <windows.h> // Required for SetConsoleOutputCP on Windows
+#endif
+
+using namespace std;
+
+int main() {
+    // Enable emoji support for Windows consoles
+    #ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+    #endif
+
+    int guess;
+    int attempts = 0;
+    bool found = false;
+
+    cout << "Welcome to the Number Guessing Game!" << endl;
+    cout << "Secret numbers are waiting... can you find them?" << endl;
+
+    while (!found) {
+        cout << "\nEnter your guess: ";
+        cin >> guess;
+        attempts++;
+
+        // Rule 1: Correct numbers (27 or 8)
+        if (guess == 27 || guess == 8) {
+            cout << "❤️ Correct! You found it!" << endl;
+            cout << "Total attempts: " << attempts << endl;
+            found = true;
+        } 
+        // Rule 2: Close/Near (within 3 numbers)
+        else if (abs(guess - 27) <= 3 || abs(guess - 8) <= 3) {
+            cout << "😎 Near! Try again." << endl;
+        } 
+        // Rule 3: Not correct/Not close
+        else {
+            cout << "🥺 It is wrong! Today is your luck." << endl;
+            cout << "Attempts so far: " << attempts << endl;
+        }
+    }
+
+    return 0;
+}
