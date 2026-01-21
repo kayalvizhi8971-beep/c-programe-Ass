@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    float gradePoint, sum = 0, cgpa;
+
+    cout << "Enter number of subjects: ";
+    cin >> n;
+
+    for(int i = 1; i <= n; i++) {
+        cout << "Enter grade point of subject " << i << ": ";
+        cin >> gradePoint;
+        sum += gradePoint;
+    }
+
+    cgpa = sum / n;
+
+    cout << "\nYour CGPA is: " << cgpa << endl;
+    if (cgpa >= 9.0)
+        cout << "Grade: O" << endl;
+    else if (cgpa >= 8.0)
+        cout << "Grade: A" << endl;
+    else if (cgpa >= 7.0)
+        cout << "Grade: B" << endl;
+    else if (cgpa >= 6.0)
+        cout << "Grade: C" << endl;
+    else
+        cout << "Grade: F" << endl;
+
+    return 0;
+}
