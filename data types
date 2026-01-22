@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int i;
+    float f;
+    double d;
+    char c;
+    bool b;
+
+    cout << "Enter int, float, double, char and bool values:\n";
+    cin >> i >> f >> d >> c >> b;
+
+    cout << "\n--- Values are ---\n";
+    cout << "Integer : " << i << endl;
+    cout << "Float   : " << f << endl;
+    cout << "Double  : " << d << endl;
+    cout << "Char    : " << c << endl;
+
+    if(b == 1)
+        cout << "Boolean : TRUE" << endl;
+    else
+        cout << "Boolean : FALSE" << endl;
+
+    return 0;
+}
