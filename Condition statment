@@ -1,0 +1,33 @@
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int y, m, d;
+    cout << "Enter Year Month Day: ";
+    cin >> y >> m >> d;
+
+    bool valid = true;
+
+    // Check basic ranges
+    if (m < 1 || m > 12 || d < 1 || d > 31 || y < 1) {
+        valid = false;
+    } 
+    else {
+        // Handle months with 30 days
+        if ((m == 4 || m == 6 || m == 9 || m == 11) && d > 30) {
+            valid = false;
+        }
+        // Handle February
+        else if (m == 2) {
+            bool leap = (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
+            if (leap && d > 29) valid = false;
+            else if (!leap && d > 28) valid = false;
+        }
+    }
+
+    if (valid) cout << "Date is valid" << endl;
+    else cout << "Date is invalid" << endl;
+
+    return 0;
+}
