@@ -1,0 +1,56 @@
+#include <iostream>
+using namespace std;
+
+class Student
+{
+public:
+    int roll, m1, m2, m3, total;
+    float avg;
+    string name;
+
+    void input()
+    {
+        cout << "Enter Roll No   : ";
+        cin >> roll;
+        cout << "Enter Name      : ";
+        cin >> name;
+        cout << "Enter 3 Marks   : ";
+        cin >> m1 >> m2 >> m3;
+
+        total = m1 + m2 + m3;
+        avg = total / 3.0;
+    }
+};
+
+int main()
+{
+    int n;
+    cout << "How many students do you want to enter? : ";
+    cin >> n;
+
+    Student s[n];
+
+    for(int i = 0; i < n; i++)
+    {
+        cout << "\n--- Enter details of Student " << i+1 << " ---\n";
+        s[i].input();
+    }
+
+    cout << "\n-------------------------------------------------------------\n";
+    cout << "Roll\tName\tM1\tM2\tM3\tTotal\tAverage\n";
+    cout << "-------------------------------------------------------------\n";
+
+    for(int i = 0; i < n; i++)
+    {
+        cout << s[i].roll << "\t"
+             << s[i].name << "\t"
+             << s[i].m1 << "\t"
+             << s[i].m2 << "\t"
+             << s[i].m3 << "\t"
+             << s[i].total << "\t"
+             << s[i].avg << endl;
+    }
+
+    cout << "-------------------------------------------------------------\n";
+    return 0;
+}
