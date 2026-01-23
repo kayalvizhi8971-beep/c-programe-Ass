@@ -1,0 +1,39 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Defining the Class
+class Student {
+public:
+    string name;
+    int rollNo;
+    float marks;
+
+    // Function to read data
+    void readDetails() {
+        cout << "Enter Name: ";
+        cin >> name;
+        cout << "Enter Roll No: ";
+        cin >> rollNo;
+        cout << "Enter Marks: ";
+        cin >> marks;
+    }
+
+    // Function to display data
+    void displayDetails() {
+        cout << "\n--- Student Details ---" << endl;
+        cout << "Name: " << name << endl;
+        cout << "Roll No: " << rollNo << endl;
+        cout << "Marks: " << marks << endl;
+    }
+};
+
+int main() {
+    Student s1; // Creating an Object of the class Student
+
+    s1.readDetails();    // Calling member functions
+    s1.displayDetails();
+
+    return 0;
+}
