@@ -1,0 +1,95 @@
+#include <iostream>
+#include <vector>
+#include <fstream>
+using namespace std;
+
+// Product Class
+class Product {
+public:
+    int id;
+    string name;
+    float price;
+
+    Product(int i, string n, float p) {
+        id = i;
+        name = n;
+        price = p;
+    }
+};
+
+// Cart Class
+class Cart {
+    vector<Product> cartItems;
+
+public:
+    void addProduct(Product p) {
+        cartItems.push_back(p);
+    }
+
+    float generateBill() {
+        float total = 0;
+        for (auto p : cartItems) {
+            total += p.price;
+        }
+        return total;
+    }
+
+    void saveBill() {
+        ofstream file("bill.txt");
+        file << "---- Online Shopping Bill ----\n";
+        for (auto p : cartItems) {
+            file << p.name << " : Rs." << p.price << endl;
+        }
+        file << "Total Amount : Rs." << generateBill();
+        file.close();
+    }
+
+    void showCart() {
+        cout << "\nCart Items:\n";
+        for (auto p : cartItems) {
+            cout << p.name << " - Rs." << p.price << endl;
+        }
+    }
+};
+
+int main() {
+    vector<Product> catalog;
+    catalog.push_back(Product(1, "Mobile", 15000));
+    catalog.push_back(Product(2, "Headphones", 2000));
+    catalog.push_back(Product(3, "Smart Watch", 5000));
+
+    Cart cart;
+    int choice;
+
+    try {
+        do {
+            cout << "\n--- Product Catalog ---\n";
+            for (auto p : catalog) {
+                cout << p.id << ". " << p.name << " - Rs." << p.price << endl;
+            }
+
+            cout << "\nEnter product ID to add to cart (0 to exit): ";
+            cin >> choice;
+
+            if (choice < 0 || choice > catalog.size()) {
+                throw "Invalid Product Selection!";
+            }
+
+            if (choice != 0) {
+                cart.addProduct(catalog[choice - 1]);
+                cout << "Product added to cart!\n";
+            }
+
+        } while (choice != 0);
+
+        cart.showCart();
+        cout << "\nTotal Bill: Rs." << cart.generateBill() << endl;
+        cart.saveBill();
+        cout << "Bill saved to file successfully!\n";
+    }
+    catch (const char* msg) {
+        cout << "Error: " << msg << endl;
+    }
+
+    return 0;
+}
