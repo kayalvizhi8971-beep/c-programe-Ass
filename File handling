@@ -1,0 +1,36 @@
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ofstream out;
+    out.open("student.txt");
+
+    string name;
+    int roll;
+
+    cout << "Enter name: ";
+    cin >> name;
+    cout << "Enter roll number: ";
+    cin >> roll;
+
+    out << name << endl;
+    out << roll << endl;
+
+    out.close();
+
+    ifstream in;
+    in.open("student.txt");
+
+    cout << "\nStudent Details from file:\n";
+    in >> name;
+    in >> roll;
+
+    cout << "Name: " << name << endl;
+    cout << "Roll: " << roll << endl;
+
+    in.close();
+    return 0;
+}
+
