@@ -1,0 +1,75 @@
+#include <iostream>
+#include <vector>
+#include <list>
+#include <stack>
+#include <queue>
+#include <map>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+    // VECTOR + ALGORITHM
+    vector<int> marks;
+    marks.push_back(78);
+    marks.push_back(85);
+    marks.push_back(66);
+
+    cout << "Vector (Marks): ";
+    for(int x : marks)
+        cout << x << " ";
+    cout << endl;
+
+    cout << "Highest mark: " << *max_element(marks.begin(), marks.end()) << endl;
+
+    // LIST
+    list<string> cities;
+    cities.push_back("Chennai");
+    cities.push_back("Madurai");
+    cities.push_front("Coimbatore");
+
+    cout << "\nList (Cities): ";
+    for(auto it = cities.begin(); it != cities.end(); ++it)
+        cout << *it << " ";
+    cout << endl;
+
+    // STACK
+    stack<char> grades;
+    grades.push('A');
+    grades.push('B');
+    grades.push('C');
+
+    cout << "\nStack top (Grade): " << grades.top() << endl;
+    grades.pop();
+    cout << "After pop, new top: " << grades.top() << endl;
+
+    // QUEUE
+    queue<string> tasks;
+    tasks.push("Login");
+    tasks.push("View Marks");
+    tasks.push("Logout");
+
+    cout << "\nQueue front (Task): " << tasks.front() << endl;
+    tasks.pop();
+    cout << "Next task: " << tasks.front() << endl;
+
+    // MAP
+    map<int, string> rollNo;
+    rollNo.insert({101, "Abi"});
+    rollNo.insert({102, "Devi"});
+    rollNo.insert({103, "Kayal"});
+
+    cout << "\nMap (Roll No - Name):" << endl;
+    for(auto m : rollNo)
+        cout << m.first << " : " << m.second << endl;
+
+    // FIND ALGORITHM
+    int searchMark = 85;
+    if(find(marks.begin(), marks.end(), searchMark) != marks.end())
+        cout << "\nMark " << searchMark << " found in vector" << endl;
+    else
+        cout << "\nMark not found" << endl;
+
+    return 0;
+}
